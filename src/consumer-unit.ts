@@ -52,7 +52,8 @@ export class ConsumerUnit {
     this._QNAME = `${defaultOptions.NAMESPACE}:queue:${qname}`;
     this._DEDUPSET = `${defaultOptions.NAMESPACE}:queue:${qname}:dedupset`;
     this.qname = qname;
-    this._GRPNAME = `${defaultOptions.NAMESPACE}:queue:${qname}:cg`;
+    // dealing with special characters, need to think about how to deal with this abstractly
+    this._GRPNAME = `${defaultOptions.NAMESPACE}:queue:${qname.split(":")[1]}:cg`;
 
     this.workerFn = workerFn;
     this._pendingTasks = [];
